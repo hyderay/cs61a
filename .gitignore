@@ -1,0 +1,17 @@
+# PyCharm settings
+.idea/
+
+# Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.DS_Store
