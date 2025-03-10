@@ -14,7 +14,7 @@ test = {
           ...     return 'world'
           >>> welcome()
           Go
-          hello
+          'hello'
           >>> print(welcome(), cal())
           Go
           Bears
