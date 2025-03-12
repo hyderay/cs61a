@@ -15,3 +15,8 @@ env/
 *.log
 *.tmp
 *.DS_Store
+
+# OK-related files
+.ok_history
+.ok_messages
+.ok_storage
