@@ -39,7 +39,13 @@ class Account:
     def time_to_retire(self, amount):
         """Return the number of years until balance would grow to amount."""
         assert self.balance > 0 and amount > 0 and self.interest > 0
-        "*** YOUR CODE HERE ***"
+        balance = self.balance
+        year = 0
+        while balance < amount:
+            balance *= (1 + self.interest)
+            year += 1
+        return year
+
 
 
 class FreeChecking(Account):
@@ -70,7 +76,16 @@ class FreeChecking(Account):
     free_withdrawals = 2
 
     "*** YOUR CODE HERE ***"
+    def __init__(self, account_holder):
+        super().__init__(account_holder)
+        self.withdraws = 0
 
+    def withdraw(self, amount):
+        self.withdraws += 1
+        fee = 0
+        if self.withdraws > self.free_withdrawals:
+            fee = 1
+        return super().withdraw(amount + fee)
 
 def without(s, i):
     """Return a new linked list like s but without the element at index i.
@@ -86,6 +101,14 @@ def without(s, i):
     True
     """
     "*** YOUR CODE HERE ***"
+    if s is Link.empty:
+        return s
+    if i == 0:
+        return s.rest
+    return Link(s.first, without(s.rest, i - 1))
+
+
+
 
 
 def duplicate_link(s, val):
@@ -105,6 +128,15 @@ def duplicate_link(s, val):
     Link(1, Link(2, Link(2, Link(2, Link(2, Link(3))))))
     """
     "*** YOUR CODE HERE ***"
+    if s is Link.empty:
+        return
+    if s.first == val:
+        old_rest = s.rest
+        s.rest = Link(val, old_rest)
+        duplicate_link(s.rest.rest, val)
+    else:
+        duplicate_link(s.rest, val)
+
 
 
 class Link:
